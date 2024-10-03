@@ -3,7 +3,7 @@ import csv
 from django.db.models import QuerySet
 
 
-def export_to_cvs(queryset: QuerySet) -> None:
+def export_to_csv(queryset: QuerySet) -> None:
     """Export PlayerLevel queryset to csv file."""
 
     with open('player_levels.csv', 'w', newline='', encoding='utf-8') as csvfile:
