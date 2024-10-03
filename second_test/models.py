@@ -3,7 +3,7 @@ from threading import Thread
 from django.db import models, IntegrityError
 from django.utils import timezone
 
-from .export import export_to_cvs
+from .export import export_to_csv
 
 
 class Player(models.Model):
@@ -67,12 +67,12 @@ class PlayerLevel(models.Model):
         return player_level_prize
 
     @classmethod
-    def export_to_cvs(cls):
+    def export_to_csv(cls):
         """Export data about user"""
         queryset = cls.objects.select_related('player', 'level', 'received_prize').iterator()
 
         # Run export in separate thread to not block the main thread
-        Thread(target=export_to_cvs, args=(queryset,)).start()
+        Thread(target=export_to_csv, args=(queryset,)).start()
 
 
 class PlayerLevelPrize(models.Model):
